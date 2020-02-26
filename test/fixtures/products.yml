@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  quantity: 1
+  price: 1
+  size: 1
+  discount: 1
+  stock: 1
+  selling_price: 1
+  color: MyString
+  gender: MyString
+  specification: MyString
+  category: MyString
+  brand: one
+  user: one
+
+two:
+  name: MyString
+  quantity: 1
+  price: 1
+  size: 1
+  discount: 1
+  stock: 1
+  selling_price: 1
+  color: MyString
+  gender: MyString
+  specification: MyString
+  category: MyString
+  brand: two
+  user: two
