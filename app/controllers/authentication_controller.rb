@@ -10,7 +10,7 @@ before_action :authorize_request, except: :login
       time = Time.now + 1.hours.to_i
       render json: {token: token,user_id: @user.id,time: time}, status: :ok
     else
-      render json: {error: 'unauthorized' }, :status => 401
+      render json: {error: 'Email or password is incorrect' }, :status => 401
     end
   end
 

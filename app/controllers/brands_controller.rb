@@ -1,6 +1,6 @@
 class BrandsController < ApplicationController
-   skip_before_action :verify_authenticity_token
-   #before_action :authorize_request, only: [:index,:brand_list,:create,:brand_update,:brand_delete]
+   #skip_before_action :verify_authenticity_token
+   before_action :authorize_request, only: [:index,:brand_list,:create,:brand_update,:brand_delete]
 
   def index
     @brands = Brand.all

@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  #before_action :authorize_request, only: [:contact_list,:find_contact,:create,:contact_update,:contact_delete]
+  #skip_before_action :verify_authenticity_token
+  before_action :authorize_request, only: [:contact_list,:find_contact,:create,:contact_update,:contact_delete]
   
   def contact_list
     @contacts = Contact.all

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :brands
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :users, param: :_username
-  post 'password/forgot', to: 'passwords#forgot'
+  post 'password/forgot/', to: 'passwords#forgot'
 
   post 'password/reset', to: 'passwords#reset'
 

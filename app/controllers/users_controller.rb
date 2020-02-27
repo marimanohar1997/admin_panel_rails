@@ -2,20 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
   #before_action :authorize_request, only: [:index,:show,:forgot_password_link_send,:change_password,:update,:destroy]
 
-  def forgot_password_link_send
-    @user = User.find_by(email: params[:email])
-    UsermailerMailer.forgot_password_link_send(@user).deliver_now
-    render json: @user
-  end
-
-
-  def change_password
-    if (params[:new_password] == params[:password])
-     change_password = User.find(params[:user_id]).update(password: params[:password])
-     render json: change_password
-   end
-  end
-
+ 
   def index
     @users = User.all
     render json: @users, status: :ok

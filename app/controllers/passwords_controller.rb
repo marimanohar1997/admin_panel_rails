@@ -2,7 +2,7 @@ class PasswordsController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 
-def forgot
+  def forgot
     if params[:email].blank? 
       return render json: {error: "Email not present"}
     end
@@ -14,7 +14,7 @@ def forgot
     else
       render json: {error: ["Email address not found. Please check and try again."]}, status: :not_found
     end
- end
+  end
 
 
 
@@ -24,6 +24,7 @@ def forgot
       return render json: {error: "Token not present"}
     end
     user = User.find_by(reset_password_token: token)
+    byebug
     if user.present? && user.password_token_valid?
       if user.reset_password!(params[:password])
         render json: {status: 'ok'}, status: :ok
