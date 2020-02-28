@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-  # skip_before_action :verify_authenticity_token
-   before_action :authorize_request, only: [:product_list,:user_products,:create,:product_update,:product_delete]
+  #skip_before_action :verify_authenticity_token
+  protect_from_forgery with: :null_session
+  before_action :authorize_request, only: [:user_products,:create,:product_update,:product_delete,:product_list]
 
   def user_products
     @products = Product.where(user_id: params[:id])
@@ -16,7 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def create
+  def product_create
     @product = Product.new(product_params)
       if @product.save
         render json: @product

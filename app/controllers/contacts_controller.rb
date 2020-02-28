@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
-  #skip_before_action :verify_authenticity_token
-  before_action :authorize_request, only: [:contact_list,:find_contact,:create,:contact_update,:contact_delete]
+   #skip_before_action :verify_authenticity_token
+   protect_from_forgery with: :null_session
+   before_action :authorize_request, only: [:contact_delete,:contact_list,:contact_create,:contact_update,:find_contact,:set_contact]
   
   def contact_list
     @contacts = Contact.all
@@ -16,7 +17,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new
   end
 
-  def create
+  def contact_create
     @contact = Contact.new(contact_params)
       if @contact.save
         render json: @contact
@@ -35,8 +36,9 @@ class ContactsController < ApplicationController
   end
 
   def contact_delete
-    @contact =  Contact.find(params[:id])
-    @contact.destroy
+    byebug
+    @contact =  Contact.find(params[:id]).delete
+    render json: "Contact deleted"
   end
 
   private

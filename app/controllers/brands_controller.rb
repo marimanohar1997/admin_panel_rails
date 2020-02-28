@@ -1,6 +1,7 @@
 class BrandsController < ApplicationController
    #skip_before_action :verify_authenticity_token
-   before_action :authorize_request, only: [:index,:brand_list,:create,:brand_update,:brand_delete]
+   protect_from_forgery with: :null_session
+   before_action :authorize_request, only: [:index,:brand_create,:brand_update,:brand_delete,:brand_list,:set_brand]
 
   def index
     @brands = Brand.all
@@ -16,10 +17,7 @@ class BrandsController < ApplicationController
     @brand = Brand.new
   end
 
-  def edit
-  end
-
-  def create
+  def brand_create
     @brand = Brand.new(brand_params)
       if @brand.save
         render json: @brand
@@ -33,7 +31,7 @@ class BrandsController < ApplicationController
       if @brand.update(brand_params)
         render json: @brand
       else
-        render json: "error"
+        render json: "Brand not updated"
       end
   end
 

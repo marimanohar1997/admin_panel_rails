@@ -24,7 +24,6 @@ class PasswordsController < ApplicationController
       return render json: {error: "Token not present"}
     end
     user = User.find_by(reset_password_token: token)
-    byebug
     if user.present? && user.password_token_valid?
       if user.reset_password!(params[:password])
         render json: {status: 'ok'}, status: :ok
