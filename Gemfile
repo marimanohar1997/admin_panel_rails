@@ -5,13 +5,13 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
-gem "capistrano", "~> 3.7"
-  gem "capistrano-rails", "~> 1.2"
-  gem "capistrano-passenger", "~> 0.2.0"
-  gem "capistrano-yarn"
-  #Add this if you"re using rbenv
-  gem "capistrano-rbenv", "~> 2.1"
-# Use sqlite3 as the database for Active Record
+group :development do
+    gem 'capistrano',         require: false
+    gem 'capistrano-rvm',     require: false
+    gem 'capistrano-rails',   require: false
+    gem 'capistrano-bundler', require: false
+    gem 'capistrano3-puma',   require: false
+end
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
